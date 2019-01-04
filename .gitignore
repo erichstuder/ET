@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# Eagle automatic backup files
+*.s#*
