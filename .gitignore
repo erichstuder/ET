@@ -33,3 +33,6 @@
 
 # Eagle automatic backup files
 *.s#*
+
+# Open Office lock
+*.odt#
