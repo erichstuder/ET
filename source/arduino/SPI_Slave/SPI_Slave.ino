@@ -1,12 +1,3 @@
-
-// Include SPI (Serial Peripheral Interface) library. Does not support SPI Slave.
-//#include <SPI.h>
-
-boolean SSlast = LOW;         // SS last flag.
-const byte led = 9;           // Slave LED digital I/O pin.
-boolean ledState = HIGH;      // LED state flag.
-const byte cmdBtn = 1;        // SPI cmdBtn master command code.
-const byte cmdLEDState = 2;   // 
 void SpiSlaveInit(void) {
   // Initialize SPI pins.
   pinMode(SCK, INPUT);
