@@ -10,6 +10,8 @@
 /* mraa header */
 #include "mraa/gpio.h"
 
+#include "upBoardLeds.h"
+
 void setUpBoardLed(char led[], bool on){
 	int led_handle = -1;
 
