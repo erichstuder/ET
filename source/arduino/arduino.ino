@@ -1,4 +1,4 @@
-#define DATA_READY_PIN 0
+#define DATA_READY_PIN A0
 
 void setup() {
   pinMode(DATA_READY_PIN, OUTPUT);
