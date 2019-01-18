@@ -6,7 +6,7 @@ void setup() {
 
 void loop() {
   digitalWrite(DATA_READY_PIN, HIGH);
-  delay(1000);
+  delay(100);
   digitalWrite(DATA_READY_PIN, LOW);
-  delay(1000);
+  delay(900);
 }
