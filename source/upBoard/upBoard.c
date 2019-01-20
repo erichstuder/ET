@@ -10,7 +10,7 @@
 
 /* mraa header */
 #include "mraa/gpio.h"
-#define GPIO_PIN_1 23
+#define GPIO_PIN_1 29
 #include "mraa/spi.h"
 #define SPI_BUS 0
 
@@ -31,7 +31,8 @@ void sig_handler(int signum){
 }
 
 #define receiveBufLength 10
-uint8_t receiveBuf[receiveBufLength];
+uint8_t receiveBuf[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
+//uint8_t dummyBuf[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
 
 int main(void){
 	int led_handle = -1;
@@ -69,7 +70,7 @@ int main(void){
 		return EXIT_FAILURE;
 	}
 
-	status = mraa_spi_frequency(spi, 4E6);
+	status = mraa_spi_frequency(spi, 4000); //4E6);
 	if (status != MRAA_SUCCESS){
 		goto err_exit;
 	}
@@ -79,6 +80,14 @@ int main(void){
 		goto err_exit;
 	}
 
+	status = mraa_spi_bit_per_word(spi, 8);
+	if (status != MRAA_SUCCESS) {
+		fprintf(stdout, "Failed to set SPI Device to 8Bit mode\n");
+		goto err_exit;
+	}
+
+	printf("init done\n");
+	
 	while(flag){
 		//setUpBoardLed("red", true);
 
@@ -89,8 +98,20 @@ int main(void){
 		lowFound = false;
 		do{
 			if(lowFound && mraa_gpio_read(gpio_1)==1){
-				//printf("highFound\n");
+				printf("highFound\n");
 				mraa_spi_transfer_buf(spi, receiveBuf, receiveBuf, receiveBufLength); 		
+				//mraa_spi_write_buf(spi, receiveBuf, receiveBufLength); 		
+				printf("%d\n", receiveBuf[0]);
+				printf("%d\n", receiveBuf[1]);
+				printf("%d\n", receiveBuf[2]);
+				printf("%d\n", receiveBuf[3]);
+				printf("%d\n", receiveBuf[4]);
+				printf("%d\n", receiveBuf[5]);
+				printf("%d\n", receiveBuf[6]);
+				printf("%d\n", receiveBuf[7]);
+				printf("%d\n", receiveBuf[8]);
+				printf("%d\n", receiveBuf[9]);
+				printf("\n");
 				break;
 			}
 			
