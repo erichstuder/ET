@@ -11,6 +11,8 @@
 /* mraa header */
 #include "mraa/gpio.h"
 #define GPIO_PIN_1 23
+#include "mraa/spi.h"
+#define SPI_BUS 0
 
 
 #include "upBoardLeds.h"
@@ -28,6 +30,9 @@ void sig_handler(int signum){
 	}
 }
 
+#define receiveBufLength 10
+uint8_t receiveBuf[receiveBufLength];
+
 int main(void){
 	int led_handle = -1;
 	struct timespec startTime, currentTime;
@@ -37,6 +42,7 @@ int main(void){
 
 	mraa_result_t status = MRAA_SUCCESS;
 	mraa_gpio_context gpio_1;
+	mraa_spi_context spi;
 
 	/* install signal handler */
 	signal(SIGINT, sig_handler);
@@ -56,6 +62,23 @@ int main(void){
 		goto err_exit;
 	}
 
+	spi = mraa_spi_init(SPI_BUS);
+	if (spi == NULL) {
+		fprintf(stderr, "Failed to initialize SPI\n");
+		mraa_deinit();
+		return EXIT_FAILURE;
+	}
+
+	status = mraa_spi_frequency(spi, 4E6);
+	if (status != MRAA_SUCCESS){
+		goto err_exit;
+	}
+
+	status = mraa_spi_lsbmode(spi, 0); //0: msb first
+	if (status != MRAA_SUCCESS) {
+		goto err_exit;
+	}
+
 	while(flag){
 		//setUpBoardLed("red", true);
 
@@ -66,7 +89,8 @@ int main(void){
 		lowFound = false;
 		do{
 			if(lowFound && mraa_gpio_read(gpio_1)==1){
-				printf("highFound\n");
+				//printf("highFound\n");
+				mraa_spi_transfer_buf(spi, receiveBuf, receiveBuf, receiveBufLength); 		
 				break;
 			}
 			
@@ -88,6 +112,7 @@ int main(void){
 		usleep(0.9E6);
 	}
 
+	mraa_spi_stop(spi);
 
 	/* release gpio's */
 	status = mraa_gpio_close(gpio_1);
