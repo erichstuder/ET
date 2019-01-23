@@ -1,22 +1,18 @@
-#include <SPI.h> //probly not needed
-
 #define DATA_READY_PIN A0
+#define SCLK A1
+#define MISO A2
+
+const uint8_t dummySend[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
 
 
 void setup() {
-	delay(2000);
 	pinMode(DATA_READY_PIN, OUTPUT);
+	pinMode(SCLK, INPUT);
+	pinMode(MISO, OUTPUT);
+	
 	pinMode(LED_BUILTIN, OUTPUT); //debug
 
-	// Enable SPI as slave.
-	pinMode(SCK, INPUT);
-	pinMode(MOSI, INPUT);
-	pinMode(MISO, OUTPUT); //always an output as only one slave exists
-	pinMode(SS, INPUT); //not used as only one slave exists
-
-	SPDR = 0xAA; //debug
-	SPCR |= (1 << SPIE); //enable interrupt
-	SPCR |= (1 << SPE); //enable
+	setupTimer();
 }
 
 //debug
@@ -24,35 +20,44 @@ void setup() {
 //	digitalWrite(LED_BUILTIN, digitalRead(SCK));	
 //}
 
-void loop() {
-	int cnt = 0;
-	SPDR = 0xAA;
-	delay(100);
-	
+//void loop() {
+//	int cnt = 0;
+//	delay(100);
+//
+//	digitalWrite(DATA_READY_PIN, LOW);
+//	delay(900);
+//}
 
-	if(SPSR & (1 << SPIF)){
-		digitalWrite(LED_BUILTIN, HIGH);
-		//if(digitalRead(LED_BUILTIN)){
-			//digitalWrite(LED_BUILTIN, LOW);
-		//}else{
-			//digitalWrite(LED_BUILTIN, HIGH);
-		//}
-	}
-
-	digitalWrite(DATA_READY_PIN, LOW);
-	delay(900);
+void loop(){
 }
 
-// interrupt vector definitions for leonardo:
-// C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h
-ISR(SPI_STC_vect){
-	static byte nextValueToSend;
-	SPDR = nextValueToSend;
-	nextValueToSend++;
-//	if(digitalRead(LED_BUILTIN)){
-//		digitalWrite(LED_BUILTIN, LOW);
-//	}else{
-//		digitalWrite(LED_BUILTIN, HIGH);
-//	}
+void setupTimer(){
+  TCCR1A = 0; //for any reason, this must be done!!
+  TCCR1B = _BV(WGM12) | _BV(CS12) | _BV(CS10); //match on value of OCR1A and divide clock by 1024
+  OCR1A = 15625; //1000ms
+  TIMSK1 = _BV(OCIE1A); //enable interrupt
+}
+
+ISR(TIMER1_COMPA_vect){
+	bool dataSent;
 	
+	//aktoren setzen
+	
+	//sensoren einlesen
+
+	digitalWrite(DATA_READY_PIN, HIGH);
+
+	//transmit data
+	do{
+		if(digitalRead(SCLK)){
+			digitalWrite(MISO, );	
+		}
+	}while(!dataSent);
+	
+
+	if(digitalRead(LED_BUILTIN)){
+		digitalWrite(LED_BUILTIN, LOW);
+	}else{
+		digitalWrite(LED_BUILTIN, HIGH);
+	}	
 }
