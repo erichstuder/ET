@@ -6,27 +6,19 @@ const uint8_t dummySend[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x0
 
 
 void setup() {
-	pinMode(DATA_READY_PIN, OUTPUT);
-	pinMode(SCLK, INPUT);
-	pinMode(MISO, OUTPUT);
+	pinMode(LED_BUILTIN, OUTPUT);
 	
-	pinMode(LED_BUILTIN, OUTPUT); //debug
+	Serial.begin(9600);
+	while (!Serial) {
+		; // wait for serial port to connect. Needed for native USB port only
+	}
 
+	Serial1.begin(2000000);
+	while (!Serial1) {
+		; // wait for serial port to connect. Needed for native USB port only
+	}
 	setupTimer();
 }
-
-//debug
-//void loop() {
-//	digitalWrite(LED_BUILTIN, digitalRead(SCK));	
-//}
-
-//void loop() {
-//	int cnt = 0;
-//	delay(100);
-//
-//	digitalWrite(DATA_READY_PIN, LOW);
-//	delay(900);
-//}
 
 void loop(){
 }
@@ -39,25 +31,46 @@ void setupTimer(){
 }
 
 ISR(TIMER1_COMPA_vect){
-	bool dataSent;
-	
-	//aktoren setzen
-	
-	//sensoren einlesen
+	char buf[15];
+	Serial1.print("Hello upBoard");
+	String str;
+	//Serial1.write(0xAA);
 
-	digitalWrite(DATA_READY_PIN, HIGH);
+//	while(Serial1.available() >= 1){
+//		Serial1.read();
+//		if(digitalRead(LED_BUILTIN)){
+//			digitalWrite(LED_BUILTIN, LOW);
+//		}else{
+//			digitalWrite(LED_BUILTIN, HIGH);
+//		}
+//	}
 
-	//transmit data
-	do{
-		if(digitalRead(SCLK)){
-			digitalWrite(MISO, );	
-		}
-	}while(!dataSent);
+	Serial.println("before loop");
+	Serial.flush();
 	
+	if(Serial1.available() >= 15){
+		//Serial1.read();
+		//Serial1.readBytes(buf, 15);
+		Serial.println("read string");
+		Serial.flush();
+		
+		//str = Serial1.readString();
+		Serial1.readBytes(buf ,15);
+		
+		Serial.println("try to print.");
+		Serial.flush();
+		
+		Serial.println(buf);
+		
+		Serial.println("printed");
+		Serial.flush();
 
-	if(digitalRead(LED_BUILTIN)){
-		digitalWrite(LED_BUILTIN, LOW);
-	}else{
-		digitalWrite(LED_BUILTIN, HIGH);
-	}	
+//		if(Serial1.readString().equals("Hello Leonardo")){
+//			if(digitalRead(LED_BUILTIN)){
+//				digitalWrite(LED_BUILTIN, LOW);
+//			}else{
+//				digitalWrite(LED_BUILTIN, HIGH);
+//			}
+//		}
+	}
 }
