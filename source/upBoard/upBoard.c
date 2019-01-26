@@ -1,3 +1,4 @@
+
 /* standard headers */
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -11,11 +12,18 @@
 /* mraa header */
 #include "mraa/gpio.h"
 #define GPIO_PIN_1 29
-#include "mraa/spi.h"
-#define SPI_BUS 0
+#include "mraa/uart.h"
 
 
 #include "upBoardLeds.h"
+
+#ifndef FALSE
+#define FALSE 0
+#define TRUE (!FALSE)
+#endif
+
+/* UART port name */
+const char* dev_path = "/dev/ttyS1";
 
 long nanoSecPassed(const struct timespec *start, const struct timespec *stop){
 	return (stop->tv_sec - start->tv_sec)*1E9L + stop->tv_nsec - start->tv_nsec;
@@ -43,13 +51,23 @@ int main(void){
 
 	mraa_result_t status = MRAA_SUCCESS;
 	mraa_gpio_context gpio_1;
-	mraa_spi_context spi;
+
+	mraa_uart_context uart;
+	char buffer[14];
+
+	int baudrate = 3686400, stopbits = 1, databits = 8;
+	mraa_uart_parity_t parity = MRAA_UART_PARITY_NONE;
+	unsigned int ctsrts = FALSE, xonxoff = FALSE;
+	const char* name = NULL;
+
 
 	/* install signal handler */
 	signal(SIGINT, sig_handler);
 
 	/* initialize mraa for the platform (not needed most of the times) */
 	mraa_init();
+
+	printf("mraa_init done\n");
 
 	gpio_1 = mraa_gpio_init(GPIO_PIN_1);
 	if (gpio_1 == NULL) {
@@ -58,82 +76,49 @@ int main(void){
 		return EXIT_FAILURE;
 	}
 
+	printf("gpio_init done\n");
+
 	status = mraa_gpio_dir(gpio_1, MRAA_GPIO_IN);
 	if (status != MRAA_SUCCESS) {
 		goto err_exit;
 	}
 
-	spi = mraa_spi_init(SPI_BUS);
-	if (spi == NULL) {
-		fprintf(stderr, "Failed to initialize SPI\n");
-		mraa_deinit();
+	printf("init_raw started\n");
+
+	/* initialize uart */
+	uart = mraa_uart_init_raw(dev_path);
+	if (uart == NULL) {
+		fprintf(stderr, "Failed to initialize UART\n");
 		return EXIT_FAILURE;
 	}
 
-	status = mraa_spi_frequency(spi, 4000); //4E6);
-	if (status != MRAA_SUCCESS){
-		goto err_exit;
-	}
+	printf("init_raw done\n");
 
-	status = mraa_spi_lsbmode(spi, 0); //0: msb first
+	/* set serial port parameters */
+	status = mraa_uart_settings(-1, &dev_path, &name, &baudrate, &databits, &stopbits, &parity, &ctsrts, &xonxoff);
 	if (status != MRAA_SUCCESS) {
 		goto err_exit;
 	}
 
-	status = mraa_spi_bit_per_word(spi, 8);
-	if (status != MRAA_SUCCESS) {
-		fprintf(stdout, "Failed to set SPI Device to 8Bit mode\n");
-		goto err_exit;
-	}
+	mraa_uart_set_baudrate(uart, 2000000);
 
 	printf("init done\n");
 	
 	while(flag){
+		if(mraa_uart_data_available(uart, 200)){
+			mraa_uart_read(uart, buffer, 14);
+			printf("%s\n", buffer);
+		}else{
+			printf("nothing\n");
+		}
+		mraa_uart_write(uart, "Hello Leonardo", 15);
+		mraa_uart_flush(uart);
+
 		//setUpBoardLed("red", true);
-
-		//sleep(1);
-
-		clock_gettime(CLOCK_REALTIME, &startTime);
-		//cnt=0;
-		lowFound = false;
-		do{
-			if(lowFound && mraa_gpio_read(gpio_1)==1){
-				printf("highFound\n");
-				mraa_spi_transfer_buf(spi, receiveBuf, receiveBuf, receiveBufLength); 		
-				//mraa_spi_write_buf(spi, receiveBuf, receiveBufLength); 		
-				printf("%d\n", receiveBuf[0]);
-				printf("%d\n", receiveBuf[1]);
-				printf("%d\n", receiveBuf[2]);
-				printf("%d\n", receiveBuf[3]);
-				printf("%d\n", receiveBuf[4]);
-				printf("%d\n", receiveBuf[5]);
-				printf("%d\n", receiveBuf[6]);
-				printf("%d\n", receiveBuf[7]);
-				printf("%d\n", receiveBuf[8]);
-				printf("%d\n", receiveBuf[9]);
-				printf("\n");
-				break;
-			}
-			
-			if(mraa_gpio_read(gpio_1)==0){
-				lowFound = true;
-			}
-
-			clock_gettime(CLOCK_REALTIME, &currentTime);
-			//printf("%ld\n", currentTime.tv_nsec);
-			//cnt++;
-			//printf("%d\n", mraa_gpio_read(gpio_1));
-		}while(nanoSecPassed(&startTime, &currentTime) < 0.2E9L);
-
-		//printf("%d\n",cnt);
-		//printf("\n");
-
-		//setUpBoardLed("red", false);
-
 		usleep(0.9E6);
 	}
 
-	mraa_spi_stop(spi);
+	mraa_uart_stop(uart);
 
 	/* release gpio's */
 	status = mraa_gpio_close(gpio_1);
@@ -150,6 +135,8 @@ int main(void){
 err_exit:
 	mraa_result_print(status);
 
+	mraa_uart_stop(uart);
+	
 	/* deinitialize mraa for the platform (not needed most of the times) */
 	mraa_deinit();
 
