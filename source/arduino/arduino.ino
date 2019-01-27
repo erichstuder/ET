@@ -1,22 +1,17 @@
-#define DATA_READY_PIN A0
-#define SCLK A1
-#define MISO A2
-
-const uint8_t dummySend[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
-
+#include "app.h"
+#include "et.h"
+#include "app_et.h"
 
 void setup() {
-	pinMode(LED_BUILTIN, OUTPUT);
+//	pinMode(LED_BUILTIN, OUTPUT);
 	
-	Serial.begin(9600);
-	while (!Serial) {
-		; // wait for serial port to connect. Needed for native USB port only
-	}
-
-	Serial1.begin(2000000);
-	while (!Serial1) {
-		; // wait for serial port to connect. Needed for native USB port only
-	}
+//	Serial.begin(9600);
+//	while (!Serial) {
+//		; // wait for serial port to connect. Needed for native USB port only
+//	}
+	
+	setupEt();
+	
 	setupTimer();
 }
 
@@ -31,6 +26,23 @@ void setupTimer(){
 }
 
 ISR(TIMER1_COMPA_vect){
+	//unsigned long time_ms = millis();
+	//unsigned long long squareMillis;
+	//double sqrtMillis;
+	struct appIn_T appIn;
+	struct appOut_T appOut;
+
+	boolean etActive = true;
+
+	appIn.data.millis_ms = millis();
+	
+	if(!etActive){
+		appTick(appIn, appOut);
+	}else{
+		appTick_et(appIn, appOut);
+	}
+	
+	
 	char buf[15];
 	Serial1.print("Hello upBoard");
 	String str;
