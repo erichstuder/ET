@@ -740,7 +740,6 @@
       </COMP>
       <COMP relation="Product">
         <COMPID name="activityDiagram" mc="Standard.ActivityDiagram" uid="f17eae00-ed37-4063-b6a6-5f3c25aa4cc0"/>
-        <COMPID name="activityDiagram" mc="Standard.ActivityDiagram" uid="49690637-51c5-4461-988a-1794eed3e96a"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>
