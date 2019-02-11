@@ -383,7 +383,7 @@
           <DEPENDENCIES>
             <COMP relation="Outgoing">
               <OBJECT>
-                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="a68d5a46-1714-4f23-b520-81f35b8ed230"/>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="ec14b339-f9ea-4b17-9378-aa47684cf7d4"/>
                 <ATTRIBUTES>
                   <ATT name="Guard"></ATT>
                   <ATT name="Weight"><![CDATA[1]]></ATT>
@@ -393,7 +393,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="send syncMsg" mc="Standard.OpaqueAction" uid="84ab0e6c-226b-4701-973a-2a0c310fc528"/>
+                      <ID name="Decision-Merge8" mc="Standard.DecisionMergeNode" uid="112bd2d3-6730-4c78-a218-0e2122d59bb8"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -453,7 +453,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="strore syncedMsg received" mc="Standard.OpaqueAction" uid="44e7aaf5-b6c5-4bbd-9d18-c70ea929033a"/>
+                      <ID name="store syncedMsg received" mc="Standard.OpaqueAction" uid="44e7aaf5-b6c5-4bbd-9d18-c70ea929033a"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -462,12 +462,12 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="strore syncedMsg received" mc="Standard.OpaqueAction" uid="44e7aaf5-b6c5-4bbd-9d18-c70ea929033a"/>
+          <ID name="store syncedMsg received" mc="Standard.OpaqueAction" uid="44e7aaf5-b6c5-4bbd-9d18-c70ea929033a"/>
           <ATTRIBUTES>
             <ATT name="Body"><![CDATA[synced := true]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[strore syncedMsg received]]></ATT>
+            <ATT name="Name"><![CDATA[store syncedMsg received]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -530,12 +530,12 @@
           <DEPENDENCIES></DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="receive input" mc="Standard.OpaqueAction" uid="b8dd69c9-27a1-46a5-901c-fe4dc052b46f"/>
+          <ID name="receive inputMsg" mc="Standard.OpaqueAction" uid="b8dd69c9-27a1-46a5-901c-fe4dc052b46f"/>
           <ATTRIBUTES>
             <ATT name="Body"></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[receive input]]></ATT>
+            <ATT name="Name"><![CDATA[receive inputMsg]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -580,40 +580,11 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="receive input" mc="Standard.OpaqueAction" uid="b8dd69c9-27a1-46a5-901c-fe4dc052b46f"/>
+                      <ID name="receive inputMsg" mc="Standard.OpaqueAction" uid="b8dd69c9-27a1-46a5-901c-fe4dc052b46f"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
               </OBJECT>
-              <OBJECT>
-                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="7e91dc8c-ec57-4b4c-942d-57dc9fbdf462"/>
-                <ATTRIBUTES>
-                  <ATT name="Guard"></ATT>
-                  <ATT name="Weight"><![CDATA[1]]></ATT>
-                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
-                  <ATT name="status">1970354901745664</ATT>
-                </ATTRIBUTES>
-                <DEPENDENCIES>
-                  <LINK relation="Target">
-                    <REFOBJ>
-                      <ID name="Decision-Merge6" mc="Standard.DecisionMergeNode" uid="7111e7c3-0564-4498-bec9-d377143feaf4"/>
-                    </REFOBJ>
-                  </LINK>
-                </DEPENDENCIES>
-              </OBJECT>
-            </COMP>
-          </DEPENDENCIES>
-        </OBJECT>
-        <OBJECT>
-          <ID name="Decision-Merge6" mc="Standard.DecisionMergeNode" uid="7111e7c3-0564-4498-bec9-d377143feaf4"/>
-          <ATTRIBUTES>
-            <ATT name="DecisionKind">ExclusiveDecision</ATT>
-            <ATT name="DecisionInputBehavior"></ATT>
-            <ATT name="Name"><![CDATA[Decision-Merge6]]></ATT>
-            <ATT name="status">1970354901745664</ATT>
-          </ATTRIBUTES>
-          <DEPENDENCIES>
-            <COMP relation="Outgoing">
               <OBJECT>
                 <ID name="ControlFlow" mc="Standard.ControlFlow" uid="8d28da83-acfd-4f9f-b1a0-8c0c25176b4e"/>
                 <ATTRIBUTES>
@@ -655,7 +626,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="send output" mc="Standard.OpaqueAction" uid="a75200ce-2f83-4f2c-9857-86184ee6a49a"/>
+                      <ID name="send outputMsg" mc="Standard.OpaqueAction" uid="a75200ce-2f83-4f2c-9857-86184ee6a49a"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -664,12 +635,12 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="send output" mc="Standard.OpaqueAction" uid="a75200ce-2f83-4f2c-9857-86184ee6a49a"/>
+          <ID name="send outputMsg" mc="Standard.OpaqueAction" uid="a75200ce-2f83-4f2c-9857-86184ee6a49a"/>
           <ATTRIBUTES>
             <ATT name="Body"></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[send output]]></ATT>
+            <ATT name="Name"><![CDATA[send outputMsg]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -715,6 +686,111 @@
                   <LINK relation="Target">
                     <REFOBJ>
                       <ID name="Activity Final Node" mc="Standard.ActivityFinalNode" uid="7be9e21e-af75-4520-a7a1-e6aa938806e2"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Decision-Merge8" mc="Standard.DecisionMergeNode" uid="112bd2d3-6730-4c78-a218-0e2122d59bb8"/>
+          <ATTRIBUTES>
+            <ATT name="DecisionKind">ExclusiveDecision</ATT>
+            <ATT name="DecisionInputBehavior"></ATT>
+            <ATT name="Name"><![CDATA[Decision-Merge8]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="a68d5a46-1714-4f23-b520-81f35b8ed230"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="send syncMsg" mc="Standard.OpaqueAction" uid="84ab0e6c-226b-4701-973a-2a0c310fc528"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="0f27da04-69a6-488c-8d58-cd7fefbc7c1c"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"><![CDATA[synced]]></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="send inputMsg" mc="Standard.OpaqueAction" uid="97346db2-ca52-40c1-b737-900b918bc42e"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="send inputMsg" mc="Standard.OpaqueAction" uid="97346db2-ca52-40c1-b737-900b918bc42e"/>
+          <ATTRIBUTES>
+            <ATT name="Body"></ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[send inputMsg]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="07d8105b-158a-44bd-9466-1265c0e9885c"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="receive outputMsg" mc="Standard.OpaqueAction" uid="15b3da94-c376-4bbd-acda-26d4307f9a2f"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="receive outputMsg" mc="Standard.OpaqueAction" uid="15b3da94-c376-4bbd-acda-26d4307f9a2f"/>
+          <ATTRIBUTES>
+            <ATT name="Body"></ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[receive outputMsg]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="6619efca-9b18-4a6a-85de-f1ba5aef0eb7"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Activity Final Node1" mc="Standard.ActivityFinalNode" uid="e8575e93-198c-44ed-9fa8-217e596db935"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
