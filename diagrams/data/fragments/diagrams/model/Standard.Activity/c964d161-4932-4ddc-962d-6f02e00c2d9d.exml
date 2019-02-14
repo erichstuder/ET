@@ -20,6 +20,22 @@
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>
         </OBJECT>
+        <OBJECT>
+          <ID name="Interruptible Region1" mc="Standard.InterruptibleActivityRegion" uid="620275f8-d4ef-4147-a7e9-436a67b24c0d"/>
+          <ATTRIBUTES>
+            <ATT name="Name"><![CDATA[Interruptible Region1]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Interruptible Region2" mc="Standard.InterruptibleActivityRegion" uid="5c62972e-eb04-46c7-bfd4-c3492f673e53"/>
+          <ATTRIBUTES>
+            <ATT name="Name"><![CDATA[Interruptible Region2]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
       </COMP>
       <COMP relation="OwnedNode">
         <OBJECT>
@@ -79,36 +95,6 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="0.9s" mc="Standard.AcceptTimeEventAction" uid="46191d52-96e5-4262-adad-a2b176f85c28"/>
-          <ATTRIBUTES>
-            <ATT name="TimeExpresion"></ATT>
-            <ATT name="IsMultipleInstance">false</ATT>
-            <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[0.9s]]></ATT>
-            <ATT name="status">1970354901745664</ATT>
-          </ATTRIBUTES>
-          <DEPENDENCIES>
-            <COMP relation="Outgoing">
-              <OBJECT>
-                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="4a94a981-5406-4716-b1b0-b02bc70d334a"/>
-                <ATTRIBUTES>
-                  <ATT name="Guard"></ATT>
-                  <ATT name="Weight"><![CDATA[1]]></ATT>
-                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
-                  <ATT name="status">1970354901745664</ATT>
-                </ATTRIBUTES>
-                <DEPENDENCIES>
-                  <LINK relation="Target">
-                    <REFOBJ>
-                      <ID name="Decision-Merge" mc="Standard.DecisionMergeNode" uid="9e0f25d0-8c9d-429e-a78a-0614a9af93c3"/>
-                    </REFOBJ>
-                  </LINK>
-                </DEPENDENCIES>
-              </OBJECT>
-            </COMP>
-          </DEPENDENCIES>
-        </OBJECT>
-        <OBJECT>
           <ID name="clear inBuffer" mc="Standard.OpaqueAction" uid="44591a76-eac8-462d-ab47-5b47a6c9d28f"/>
           <ATTRIBUTES>
             <ATT name="Body"></ATT>
@@ -137,14 +123,6 @@
               </OBJECT>
             </COMP>
           </DEPENDENCIES>
-        </OBJECT>
-        <OBJECT>
-          <ID name="Activity Final Node" mc="Standard.ActivityFinalNode" uid="7be9e21e-af75-4520-a7a1-e6aa938806e2"/>
-          <ATTRIBUTES>
-            <ATT name="Name"><![CDATA[Activity Final Node]]></ATT>
-            <ATT name="status">1970354901745664</ATT>
-          </ATTRIBUTES>
-          <DEPENDENCIES></DEPENDENCIES>
         </OBJECT>
         <OBJECT>
           <ID name="Decision-Merge1" mc="Standard.DecisionMergeNode" uid="7e48a824-418a-4fb4-9b2f-b220fe28280a"/>
@@ -213,7 +191,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="Decision-Merge2" mc="Standard.DecisionMergeNode" uid="02ea00ea-d650-450c-bde4-a09bb50b16ad"/>
+                      <ID name="start 0.9s timer" mc="Standard.OpaqueAction" uid="f7f61eca-7d97-4a14-a93a-78614cf1cfba"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -474,7 +452,8 @@
         <OBJECT>
           <ID name="init" mc="Standard.OpaqueAction" uid="88bd18c3-f6f7-472a-97dc-0420010c20c5"/>
           <ATTRIBUTES>
-            <ATT name="Body"><![CDATA[synced := false]]></ATT>
+            <ATT name="Body"><![CDATA[synced := false
+start repeating 1s timer]]></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
             <ATT name="Name"><![CDATA[init]]></ATT>
@@ -566,7 +545,7 @@
                 </DEPENDENCIES>
               </OBJECT>
               <OBJECT>
-                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="8d28da83-acfd-4f9f-b1a0-8c0c25176b4e"/>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="e43ec690-63f8-4e3c-839b-6d85f08ea2cc"/>
                 <ATTRIBUTES>
                   <ATT name="Guard"></ATT>
                   <ATT name="Weight"><![CDATA[1]]></ATT>
@@ -576,7 +555,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="Activity Final Node" mc="Standard.ActivityFinalNode" uid="7be9e21e-af75-4520-a7a1-e6aa938806e2"/>
+                      <ID name="Decision-Merge6" mc="Standard.DecisionMergeNode" uid="3294ad37-67ea-4062-b423-73f909b494a0"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -665,7 +644,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="Activity Final Node" mc="Standard.ActivityFinalNode" uid="7be9e21e-af75-4520-a7a1-e6aa938806e2"/>
+                      <ID name="Decision-Merge9" mc="Standard.DecisionMergeNode" uid="18e66dc2-6aa2-40a7-a11b-c29821f6d60e"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -770,7 +749,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="wait on timer event" mc="Standard.OpaqueAction" uid="7b5c83ab-1c43-4ea2-a526-895a2ad42d8d"/>
+                      <ID name="wait on 1s timer event" mc="Standard.OpaqueAction" uid="7b5c83ab-1c43-4ea2-a526-895a2ad42d8d"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -809,12 +788,12 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="wait on timer event" mc="Standard.OpaqueAction" uid="7b5c83ab-1c43-4ea2-a526-895a2ad42d8d"/>
+          <ID name="wait on 1s timer event" mc="Standard.OpaqueAction" uid="7b5c83ab-1c43-4ea2-a526-895a2ad42d8d"/>
           <ATTRIBUTES>
             <ATT name="Body"></ATT>
             <ATT name="IsMultipleInstance">false</ATT>
             <ATT name="IsCompensation">false</ATT>
-            <ATT name="Name"><![CDATA[wait on timer event]]></ATT>
+            <ATT name="Name"><![CDATA[wait on 1s timer event]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -831,6 +810,252 @@
                   <LINK relation="Target">
                     <REFOBJ>
                       <ID name="Decision-Merge4" mc="Standard.DecisionMergeNode" uid="c0cade05-d829-40cc-a1f2-cafe05d6ad32"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="2s" mc="Standard.AcceptTimeEventAction" uid="78ec7c93-5001-47aa-abdf-000bc52b2d39"/>
+          <ATTRIBUTES>
+            <ATT name="TimeExpresion"></ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[2s]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="352ac0fd-076b-477f-82ae-209d60ab3c0c"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Error" mc="Standard.OpaqueAction" uid="dc8029e1-f4bf-4b9c-85d6-c2be858c10ad"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Error" mc="Standard.OpaqueAction" uid="dc8029e1-f4bf-4b9c-85d6-c2be858c10ad"/>
+          <ATTRIBUTES>
+            <ATT name="Body"></ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[Error]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="50a1deea-d8ee-4170-b68f-366469c9b080"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Activity Final Node2" mc="Standard.ActivityFinalNode" uid="2e2f98d8-043c-4d71-9389-1bf104e9b088"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Activity Final Node2" mc="Standard.ActivityFinalNode" uid="2e2f98d8-043c-4d71-9389-1bf104e9b088"/>
+          <ATTRIBUTES>
+            <ATT name="Name"><![CDATA[Activity Final Node2]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="0.2s" mc="Standard.AcceptTimeEventAction" uid="d469d3e9-602e-4b49-bcd1-45eee0e755ee"/>
+          <ATTRIBUTES>
+            <ATT name="TimeExpresion"></ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[0.2s]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="fdcb1f8e-913a-4f45-9259-42d980c472ec"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="start 0.7s timer" mc="Standard.OpaqueAction" uid="eda58b06-123e-412c-a1aa-0a27aa2bed9a"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Decision-Merge6" mc="Standard.DecisionMergeNode" uid="3294ad37-67ea-4062-b423-73f909b494a0"/>
+          <ATTRIBUTES>
+            <ATT name="DecisionKind">ExclusiveDecision</ATT>
+            <ATT name="DecisionInputBehavior"></ATT>
+            <ATT name="Name"><![CDATA[Decision-Merge6]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="8d28da83-acfd-4f9f-b1a0-8c0c25176b4e"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Decision-Merge9" mc="Standard.DecisionMergeNode" uid="18e66dc2-6aa2-40a7-a11b-c29821f6d60e"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="start 0.9s timer" mc="Standard.OpaqueAction" uid="f7f61eca-7d97-4a14-a93a-78614cf1cfba"/>
+          <ATTRIBUTES>
+            <ATT name="Body"></ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[start 0.9s timer]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="d0a08dad-471f-4137-a371-0386b5d3ef5e"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Decision-Merge2" mc="Standard.DecisionMergeNode" uid="02ea00ea-d650-450c-bde4-a09bb50b16ad"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="start 0.7s timer" mc="Standard.OpaqueAction" uid="eda58b06-123e-412c-a1aa-0a27aa2bed9a"/>
+          <ATTRIBUTES>
+            <ATT name="Body"></ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[start 0.7s timer]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="ce6f8183-29c6-4ec7-b923-c7702da9454e"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Decision-Merge6" mc="Standard.DecisionMergeNode" uid="3294ad37-67ea-4062-b423-73f909b494a0"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Decision-Merge9" mc="Standard.DecisionMergeNode" uid="18e66dc2-6aa2-40a7-a11b-c29821f6d60e"/>
+          <ATTRIBUTES>
+            <ATT name="DecisionKind">ExclusiveDecision</ATT>
+            <ATT name="DecisionInputBehavior"></ATT>
+            <ATT name="Name"><![CDATA[Decision-Merge9]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="aa5cea53-f468-46aa-8531-887aa9695452"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="wait on timer" mc="Standard.OpaqueAction" uid="aeaf7d8d-e8d2-4835-a6eb-8461f1fb4237"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="wait on timer" mc="Standard.OpaqueAction" uid="aeaf7d8d-e8d2-4835-a6eb-8461f1fb4237"/>
+          <ATTRIBUTES>
+            <ATT name="Body"></ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[wait on timer]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="63d442d1-17ed-4496-a363-834d465f5986"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="Decision-Merge" mc="Standard.DecisionMergeNode" uid="9e0f25d0-8c9d-429e-a78a-0614a9af93c3"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
