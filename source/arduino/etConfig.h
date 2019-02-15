@@ -15,22 +15,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef APP_ET_H
-#define APP_ET_H
+#ifndef ETCONFIG_H
+#define ETCONFIG_H
 
-#include "app.h"
-#include "et.h"
+#define ET_SYNC_ID 0x01
+#define ET_SYNCED_ID 0x02
+#define ET_INPUT_ID 0x03
+#define ET_OUTPUT_ID 0x04
 
-inline boolean appTick_et(struct appIn_T appIn, struct appOut_T appOut){
-	unsigned long initMillis = millis();
-	boolean success = false;
-	
-	toEt(appIn.byteArr, sizeof(appIn.byteArr));
-
-	while(millis - initMillis < ET_OUTPUT_TIMEOUT*1000UL){
-		success = fromEt(appOut.byteArr, sizeof(appOut.byteArr));	
-	}
-	return success;
-}
-
-#endif //APP_ET_H
+#endif //ETCONFIG_H

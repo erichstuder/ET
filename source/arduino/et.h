@@ -18,15 +18,42 @@
 #ifndef ET_H
 #define ET_H
 
+#include "etConfig.h"
 #include "arduino.h"
+
+#define ET_OUTPUT_TIMEOUT 2 //s
 
 void setupEt();
 
 inline void toEt(byte buf[], int len){
-	Serial1.write(buf, len);	
+	Serial1.write(ET_INPUT_ID);
+	Serial1.write(buf, len);
+	Serial1.flush();
 }
 
+inline boolean fromEt(byte buf[], int len){
+	if(Serial1.available() >= len+1){
+		if(Serial1.read() == ET_OUTPUT_ID){
+			int n;
+			for(n=0; n<len; n++){
+				buf[n] = Serial1.read();		
+			}
+			return true;
+		}
+	}
+	return false;
+}
 
-
+inline boolean syncEt(boolean (*doneFunc)(void)){
+	while(Serial1.available()){
+		Serial1.read();
+	}
+	Serial1.write(ET_SYNC_ID);
+	while(!doneFunc()){
+		if(Serial1.available()){
+			return Serial.read()==ET_SYNCED_ID;
+		}
+	}
+}
 
 #endif //ET_H
