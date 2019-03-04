@@ -106,7 +106,7 @@
           <DEPENDENCIES>
             <COMP relation="Outgoing">
               <OBJECT>
-                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="12719354-eb9f-4162-91cc-bc3e6838a2e4"/>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="1cc78c06-943f-4fe2-b904-4ddc4879dd9c"/>
                 <ATTRIBUTES>
                   <ATT name="Guard"></ATT>
                   <ATT name="Weight"><![CDATA[1]]></ATT>
@@ -145,7 +145,7 @@
                 <DEPENDENCIES>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="clear inBuffer" mc="Standard.OpaqueAction" uid="44591a76-eac8-462d-ab47-5b47a6c9d28f"/>
+                      <ID name="start 0.9s timer" mc="Standard.OpaqueAction" uid="f79d7103-bfd0-4a22-b85a-807421c002bf"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
@@ -1056,6 +1056,36 @@ start repeating 1s timer]]></ATT>
                   <LINK relation="Target">
                     <REFOBJ>
                       <ID name="Decision-Merge" mc="Standard.DecisionMergeNode" uid="9e0f25d0-8c9d-429e-a78a-0614a9af93c3"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="start 0.9s timer" mc="Standard.OpaqueAction" uid="f79d7103-bfd0-4a22-b85a-807421c002bf"/>
+          <ATTRIBUTES>
+            <ATT name="Body"></ATT>
+            <ATT name="IsMultipleInstance">false</ATT>
+            <ATT name="IsCompensation">false</ATT>
+            <ATT name="Name"><![CDATA[start 0.9s timer]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Outgoing">
+              <OBJECT>
+                <ID name="ControlFlow" mc="Standard.ControlFlow" uid="4dc01219-29b0-4b83-9004-8bf55be549f0"/>
+                <ATTRIBUTES>
+                  <ATT name="Guard"></ATT>
+                  <ATT name="Weight"><![CDATA[1]]></ATT>
+                  <ATT name="Name"><![CDATA[ControlFlow]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="clear inBuffer" mc="Standard.OpaqueAction" uid="44591a76-eac8-462d-ab47-5b47a6c9d28f"/>
                     </REFOBJ>
                   </LINK>
                 </DEPENDENCIES>
