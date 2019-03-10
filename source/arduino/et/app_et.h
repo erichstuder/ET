@@ -18,8 +18,8 @@
 #ifndef APP_ET_H
 #define APP_ET_H
 
-#include "app.h"
-#include "et.h"
+//#include "app.h" //for appIn_T and appOut_T
+//#include "et.h"
 
 inline boolean appTick_et(struct appIn_T appIn, struct appOut_T appOut){
 	unsigned long initMillis = millis();
@@ -27,7 +27,7 @@ inline boolean appTick_et(struct appIn_T appIn, struct appOut_T appOut){
 	
 	toEt(appIn.byteArr, sizeof(appIn.byteArr));
 
-	while(millis - initMillis < ET_OUTPUT_TIMEOUT*1000UL){
+	while(millis() - initMillis < ET_OUTPUT_TIMEOUT*1000UL){
 		success = fromEt(appOut.byteArr, sizeof(appOut.byteArr));	
 	}
 	return success;

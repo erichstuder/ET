@@ -15,9 +15,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "app.h"
-#include "et.h"
-#include "app_et.h"
+#include "app/app.h"
+#include "et/et.h"
+#include "et/et.cpp" //for any reason this has to be done
+#include "et/app_et.h"
 
 void setup() {
 //	pinMode(LED_BUILTIN, OUTPUT);
@@ -27,7 +28,8 @@ void setup() {
 //		; // wait for serial port to connect. Needed for native USB port only
 //	}
 	
-	setupEt();
+
+	//setupEt();
 	
 	setupTimer();
 }
@@ -57,9 +59,10 @@ ISR(TIMER1_COMPA_vect){
 	boolean etSynced = false;
 
 	appIn.data.millis_ms = millis();
-	
+  
 	if(!etActive){
 		appTick(appIn, appOut);
+    setupEt();
 	}else{
 		if(!etSynced){
 			etSynced = syncEt(&timerEventPending);

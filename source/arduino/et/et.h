@@ -19,7 +19,6 @@
 #define ET_H
 
 #include "etConfig.h"
-#include "arduino.h"
 
 #define ET_OUTPUT_TIMEOUT 2 //s
 
