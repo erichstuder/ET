@@ -28,8 +28,7 @@ void setup() {
 //		; // wait for serial port to connect. Needed for native USB port only
 //	}
 	
-
-	//setupEt();
+	setupEt();
 	
 	setupTimer();
 }
@@ -62,7 +61,6 @@ ISR(TIMER1_COMPA_vect){
   
 	if(!etActive){
 		appTick(appIn, appOut);
-    setupEt();
 	}else{
 		if(!etSynced){
 			etSynced = syncEt(&timerEventPending);
