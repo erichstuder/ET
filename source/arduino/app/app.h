@@ -20,6 +20,7 @@
 
 #include "arduino.h"
 
+#define APP_SAMPLETIME 1 //s
 
 struct appIn_T{
 	union{

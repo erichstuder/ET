@@ -37,10 +37,14 @@ void loop(){
 }
 
 void setupTimer(){
-  TCCR1A = 0; //for any reason, this must be done!!
-  TCCR1B = _BV(WGM12) | _BV(CS12) | _BV(CS10); //match on value of OCR1A and divide clock by 1024
-  OCR1A = 15625; //1000ms
-  TIMSK1 = _BV(OCIE1A); //enable interrupt
+  #if APP_SAMPLETIME==1
+    TCCR1A = 0; //for any reason, this must be done!!
+    TCCR1B = _BV(WGM12) | _BV(CS12) | _BV(CS10); //match on value of OCR1A and divide clock by 1024
+    OCR1A = 15625; //1000ms
+    TIMSK1 = _BV(OCIE1A); //enable interrupt
+  #else
+    #error APP_SAMPLETIME not supported
+  #endif
 }
 
 boolean timerEventPending(){
