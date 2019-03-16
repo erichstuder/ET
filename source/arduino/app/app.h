@@ -18,8 +18,6 @@
 #ifndef APP_H
 #define APP_H
 
-#include "arduino.h"
-
 #define APP_SAMPLETIME 1 //s
 
 struct appIn_T{
