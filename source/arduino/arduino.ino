@@ -22,15 +22,13 @@
 #include "et/app_et.h"
 
 void setup() {
-//	pinMode(LED_BUILTIN, OUTPUT);
+	pinMode(LED_BUILTIN, OUTPUT);
 	
 //	Serial.begin(9600);
 //	while (!Serial) {
 //		; // wait for serial port to connect. Needed for native USB port only
 //	}
-	
 	setupEt();
-	
 	setupTimer();
 }
 
@@ -49,7 +47,7 @@ void setupTimer(){
 }
 
 boolean timerEventPending(){
-	return bitRead(TIFR1, OCF1A);
+	return bit_is_set(TIFR1, OCF1A);
 }
 
 ISR(TIMER1_COMPA_vect){
@@ -67,13 +65,19 @@ ISR(TIMER1_COMPA_vect){
 	if(!etActive){
 		appTick(appIn, appOut);
 	}else{
+		//Serial.write('tick started\n');
+		
 		if(!etSynced){
-			etSynced = syncEt(&timerEventPending);
+			digitalWrite(LED_BUILTIN, HIGH);
+			etSynced = syncEt(timerEventPending);
 		}else{
 			if(appTick_et(appIn, appOut) == false){
 				while(1);
 			}
 		}
+		//delay(100);
+		digitalWrite(LED_BUILTIN, LOW);
+		//delay(200);
 	}
 
 //		if(Serial1.readString().equals("Hello Leonardo")){

@@ -48,10 +48,18 @@ inline boolean syncEt(boolean (*doneFunc)(void)){
 		Serial1.read();
 	}
 	Serial1.write(ET_SYNC_ID);
-	while(!doneFunc()){
+	unsigned char cnt = 0;
+	while(!(*doneFunc)() && cnt<10){
+	
 		if(Serial1.available()){
 			return Serial.read()==ET_SYNCED_ID;
 		}
+		cnt++;
+		delayMicroseconds(10000);
+		delayMicroseconds(10000);
+		delayMicroseconds(10000);
+		delayMicroseconds(10000);
+		delayMicroseconds(10000);
 	}
 }
 
