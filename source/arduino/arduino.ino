@@ -16,6 +16,7 @@
  */
 
 #include "app/app.h"
+#include "app/app.cpp"
 #include "et/et.h"
 #include "et/et.cpp" //for any reason this has to be done
 #include "et/app_et.h"
@@ -61,7 +62,7 @@ ISR(TIMER1_COMPA_vect){
 	boolean etActive = true;
 	boolean etSynced = false;
 
-	appIn.data.millis_ms = millis();
+	appIn.millis_ms = millis();
   
 	if(!etActive){
 		appTick(appIn, appOut);

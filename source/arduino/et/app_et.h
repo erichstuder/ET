@@ -25,10 +25,10 @@ inline boolean appTick_et(struct appIn_T appIn, struct appOut_T appOut){
 	unsigned long initMillis = millis();
 	boolean success = false;
 	
-	toEt(appIn.byteArr, sizeof(appIn.byteArr));
+	toEt((byte*)&appIn, sizeof(appIn));
 
 	while(millis() - initMillis < ET_OUTPUT_TIMEOUT*1000UL){
-		success = fromEt(appOut.byteArr, sizeof(appOut.byteArr));	
+		success = fromEt((byte*)&appOut, sizeof(appOut));	
 	}
 	return success;
 }
