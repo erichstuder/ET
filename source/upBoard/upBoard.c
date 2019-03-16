@@ -33,7 +33,8 @@
 
 #include "upBoardLeds.h"
 
-#include "app.h"
+#include "appCopy/app.h"
+#include "appCopy/etConfig.h"
 
 #ifndef FALSE
 #define FALSE 0
@@ -59,7 +60,7 @@ void sig_handler(int signum){
 #define receiveBufLength 10
 uint8_t receiveBuf[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
 uint8_t msgId[1];
-const uint8_t SyncedId[1] = ET_SYNCED_ID;
+const uint8_t SyncedId[1] = {ET_SYNCED_ID};
 //uint8_t dummyBuf[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
 
 int main(void){
@@ -79,6 +80,9 @@ int main(void){
 	mraa_uart_parity_t parity = MRAA_UART_PARITY_NONE;
 	unsigned int ctsrts = FALSE, xonxoff = FALSE;
 	const char* name = NULL;
+
+	struct appIn_T appIn;
+	struct appOut_T appOut;
 
 
 	/* install signal handler */
@@ -128,7 +132,7 @@ int main(void){
 		clock_gettime(CLOCK_REALTIME, &startTime);
 		if(mraa_uart_data_available(uart, 0)){
 			do{
-				mraa_uart_read(uart, void*, 1);
+				mraa_uart_read(uart, NULL, 1);
 			}while(mraa_uart_data_available(uart, 0));
 		}else if(mraa_uart_data_available(uart, 200)){
 			clock_gettime(CLOCK_REALTIME, &startTime);
@@ -136,16 +140,16 @@ int main(void){
 			if(msgId[1] == ET_SYNC_ID){
 				mraa_uart_write(uart, SyncedId, sizeof(SyncedId)/sizeof(SyncedId[0]));
 			}else if(msgId[1] == ET_INPUT_ID){
-				mraa_uart_read(uart, appIn.byteArr, sizeof(appIn.byteArr));
+				mraa_uart_read(uart, (unsigned char*)&appIn, sizeof(appIn));
 				appTick(appIn, appOut);
-				mraa_uart_write(uart, appOut.byteArr, sizeof(appOut.byteArr));
+				mraa_uart_write(uart, (unsigned char*)&appOut, sizeof(appOut));
 			}
 		}
 		mraa_uart_flush(uart);
 		
 		clock_gettime(CLOCK_REALTIME, &currentTime);
 		sleepTime.tv_sec = 0;
-		sleepTime.tv_nsec =((long)APP_SAMPLETIME * 1E9L * 0.9L - nanoSecPassed(&startTime, &currentTime))
+		sleepTime.tv_nsec =((long)APP_SAMPLETIME * 1E9L * 0.9L - nanoSecPassed(&startTime, &currentTime));
 		nanosleep(&sleepTime, NULL);
 		
 		

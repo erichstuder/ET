@@ -15,6 +15,9 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 all:
-	clear
-	gcc upBoard.c upBoardLeds.c -o upBoard.o -lmraa
-	sudo ./upBoard.o
+	mkdir appCopy -p
+	cp ../arduino/app/* appCopy
+	cp ../arduino/et/etConfig.h appCopy
+#	clear
+	gcc upBoard.c upBoardLeds.c appCopy/app.cpp -o upBoard.o -lmraa -lm
+#	sudo ./upBoard.o
