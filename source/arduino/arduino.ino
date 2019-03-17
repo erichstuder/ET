@@ -40,13 +40,6 @@ void setup() {
 	etSynced = false;
 	setupEt();
 	setupTimer();
-
-	///debug
-	/*Serial1.begin(2000000);
-	while (!Serial1) {
-		; // wait for serial port to connect. Needed for native USB port only
-	}*/
-	///debug
 }
 
 void loop(){
@@ -54,49 +47,23 @@ void loop(){
 		return;
 	}
 	timerEvent=false;
-
 	appIn.millis_ms = millis();
-  	//Serial.println(appIn.millis_ms);
 	if(!etActive){
 		appTick(appIn, &appOut);
 	}else{
-		//Serial.write('tick started\n');
-
-		//Serial.println(etSynced);
-		//digitalWrite(LED_BUILTIN, LOW);
 		if(!etSynced){
-			//digitalWrite(LED_BUILTIN, HIGH);
 			etSynced = syncEt(timerEventPending);
 		}else{
-			//digitalWrite(LED_BUILTIN, HIGH);
-			//Serial.println("HAAAHA");
-			//Serial.flush();
-			
 			if(appTick_et(appIn, &appOut) == false){
 				digitalWrite(LED_BUILTIN, HIGH);
-				//while(1); //das brauchts!!!!
+				while(1);
 			}
 		}
-		//Serial.println(etSynced);
-		//Serial.println("");
-		//digitalWrite(LED_BUILTIN, HIGH);
-		//delay(100);
-		//digitalWrite(LED_BUILTIN, LOW);
-		//delay(200);
 	}
-
 	Serial.println(appIn.millis_ms);
 	Serial.println((long)appOut.squareMillis);
-	Serial.println(appOut.sqrtMillis);
+	Serial.println(appOut.sqrtMillis);	
 	Serial.println("");
-
-//		if(Serial1.readString().equals("Hello Leonardo")){
-//			if(digitalRead(LED_BUILTIN)){
-//				digitalWrite(LED_BUILTIN, LOW);
-//			}else{
-//				digitalWrite(LED_BUILTIN, HIGH);
-//			}
-//		}
 }
 
 void setupTimer(){
