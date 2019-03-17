@@ -59,8 +59,9 @@ void sig_handler(int signum){
 
 #define receiveBufLength 10
 uint8_t receiveBuf[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
-uint8_t msgId[1];
-const uint8_t SyncedId[1] = {ET_SYNCED_ID};
+uint8_t msgId;
+const uint8_t SyncedId = ET_SYNCED_ID;
+const uint8_t OutputId = ET_OUTPUT_ID;
 //uint8_t dummyBuf[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
 
 int main(void){
@@ -132,16 +133,20 @@ int main(void){
 		clock_gettime(CLOCK_REALTIME, &startTime);
 		if(mraa_uart_data_available(uart, 0)){
 			do{
-				mraa_uart_read(uart, NULL, 1);
+				mraa_uart_read(uart, &msgId, 1); //dummy reads
 			}while(mraa_uart_data_available(uart, 0));
 		}else if(mraa_uart_data_available(uart, 200)){
 			clock_gettime(CLOCK_REALTIME, &startTime);
-			mraa_uart_read(uart, msgId, 1);
-			if(msgId[1] == ET_SYNC_ID){
-				mraa_uart_write(uart, SyncedId, sizeof(SyncedId)/sizeof(SyncedId[0]));
-			}else if(msgId[1] == ET_INPUT_ID){
+			mraa_uart_read(uart, &msgId, 1);
+			printf("received something: %d\n", msgId);
+			if(msgId == ET_SYNC_ID){
+				printf("ET_SYNC_ID received\n");
+				mraa_uart_write(uart, &SyncedId, sizeof(SyncedId));
+			}else if(msgId == ET_INPUT_ID){
+				printf("ET_INPUT_ID received\n");
 				mraa_uart_read(uart, (unsigned char*)&appIn, sizeof(appIn));
-				appTick(appIn, appOut);
+				appTick(appIn, &appOut);
+				mraa_uart_write(uart, &OutputId, sizeof(OutputId));
 				mraa_uart_write(uart, (unsigned char*)&appOut, sizeof(appOut));
 			}
 		}
