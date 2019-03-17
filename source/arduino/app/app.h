@@ -26,7 +26,7 @@ struct appIn_T{
 
 struct appOut_T{
 	unsigned long long squareMillis;
-	double sqrtMillis;
+	float sqrtMillis;
 };
 
 //extern "C" void appTick(struct appIn_T appIn, struct appOut_T appOut);
