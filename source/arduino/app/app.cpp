@@ -18,7 +18,7 @@
 #include <math.h>
 #include "app.h"
 
-void appTick(struct appIn_T appIn, struct appOut_T appOut){
+extern "C" void appTick(struct appIn_T appIn, struct appOut_T appOut){
 	unsigned long millis_ms = appIn.millis_ms;
 	appOut.squareMillis = (unsigned long long)millis_ms * (unsigned long long)millis_ms;
 	appOut.sqrtMillis = sqrt(millis_ms);

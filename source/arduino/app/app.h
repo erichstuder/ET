@@ -29,6 +29,6 @@ struct appOut_T{
 	double sqrtMillis;
 };
 
-void appTick(struct appIn_T appIn, struct appOut_T appOut);
+//extern "C" void appTick(struct appIn_T appIn, struct appOut_T appOut);
 
 #endif //APP_H
