@@ -21,64 +21,74 @@
 #include "et/et.cpp" //for any reason this has to be done
 #include "et/app_et.h"
 
+boolean timerEvent;
+boolean etActive;
+boolean etSynced;
+struct appIn_T appIn;
+struct appOut_T appOut;
+
 void setup() {
 	pinMode(LED_BUILTIN, OUTPUT);
+	digitalWrite(LED_BUILTIN, LOW);
 	
-//	Serial.begin(9600);
-//	while (!Serial) {
-//		; // wait for serial port to connect. Needed for native USB port only
-//	}
+	Serial.begin(9600);
+	while (!Serial) {
+		; // wait for serial port to connect. Needed for native USB port only
+	}
+
+	etActive = true;
+	etSynced = false;
 	setupEt();
 	setupTimer();
+
+	///debug
+	/*Serial1.begin(2000000);
+	while (!Serial1) {
+		; // wait for serial port to connect. Needed for native USB port only
+	}*/
+	///debug
 }
 
 void loop(){
-}
-
-void setupTimer(){
-  #if APP_SAMPLETIME==1
-    TCCR1A = 0; //for any reason, this must be done!!
-    TCCR1B = _BV(WGM12) | _BV(CS12) | _BV(CS10); //match on value of OCR1A and divide clock by 1024
-    OCR1A = 15625; //1000ms
-    TIMSK1 = _BV(OCIE1A); //enable interrupt
-  #else
-    #error APP_SAMPLETIME not supported
-  #endif
-}
-
-boolean timerEventPending(){
-	return bit_is_set(TIFR1, OCF1A);
-}
-
-ISR(TIMER1_COMPA_vect){
-	//unsigned long time_ms = millis();
-	//unsigned long long squareMillis;
-	//double sqrtMillis;
-	struct appIn_T appIn;
-	struct appOut_T appOut;
-
-	boolean etActive = true;
-	boolean etSynced = false;
+	if(!timerEvent){
+		return;
+	}
+	timerEvent=false;
 
 	appIn.millis_ms = millis();
-  
+  	//Serial.println(appIn.millis_ms);
 	if(!etActive){
-		appTick(appIn, appOut);
+		appTick(appIn, &appOut);
 	}else{
 		//Serial.write('tick started\n');
-		
+
+		//Serial.println(etSynced);
+		//digitalWrite(LED_BUILTIN, LOW);
 		if(!etSynced){
-			digitalWrite(LED_BUILTIN, HIGH);
+			//digitalWrite(LED_BUILTIN, HIGH);
 			etSynced = syncEt(timerEventPending);
 		}else{
-			if(appTick_et(appIn, appOut) == false){
-				while(1);
+			//digitalWrite(LED_BUILTIN, HIGH);
+			//Serial.println("HAAAHA");
+			//Serial.flush();
+			
+			if(appTick_et(appIn, &appOut) == false){
+				digitalWrite(LED_BUILTIN, HIGH);
+				//while(1); //das brauchts!!!!
 			}
 		}
+		//Serial.println(etSynced);
+		//Serial.println("");
+		//digitalWrite(LED_BUILTIN, HIGH);
 		//delay(100);
-		digitalWrite(LED_BUILTIN, LOW);
+		//digitalWrite(LED_BUILTIN, LOW);
 		//delay(200);
 	}
+
+	Serial.println(appIn.millis_ms);
+	Serial.println((long)appOut.squareMillis);
+	Serial.println(appOut.sqrtMillis);
+	Serial.println("");
 
 //		if(Serial1.readString().equals("Hello Leonardo")){
 //			if(digitalRead(LED_BUILTIN)){
@@ -87,4 +97,24 @@ ISR(TIMER1_COMPA_vect){
 //				digitalWrite(LED_BUILTIN, HIGH);
 //			}
 //		}
+}
+
+void setupTimer(){
+	timerEvent=false;
+	#if APP_SAMPLETIME==1
+		TCCR1A = 0; //for any reason, this must be done!!
+		TCCR1B = _BV(WGM12) | _BV(CS12) | _BV(CS10); //match on value of OCR1A and divide clock by 1024
+		OCR1A = 15625; //1000ms
+		TIMSK1 = _BV(OCIE1A); //enable interrupt
+	#else
+		#error APP_SAMPLETIME not supported
+	#endif
+}
+
+boolean timerEventPending(){
+	return timerEvent;
+}
+
+ISR(TIMER1_COMPA_vect){
+	timerEvent=true;
 }

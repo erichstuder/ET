@@ -21,16 +21,19 @@
 //#include "app.h" //for appIn_T and appOut_T
 //#include "et.h"
 
-inline boolean appTick_et(struct appIn_T appIn, struct appOut_T appOut){
+inline boolean appTick_et(struct appIn_T appIn, struct appOut_T* appOut){
 	unsigned long initMillis = millis();
 	boolean success = false;
 	
 	toEt((byte*)&appIn, sizeof(appIn));
 
 	while(millis() - initMillis < ET_OUTPUT_TIMEOUT*1000UL){
-		success = fromEt((byte*)&appOut, sizeof(appOut));	
+		success = fromEt((byte*)appOut, sizeof(*appOut));
+		if(success){
+			return true;
+		}
 	}
-	return success;
+	return false;
 }
 
 #endif //APP_ET_H

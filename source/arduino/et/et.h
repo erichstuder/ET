@@ -47,20 +47,17 @@ inline boolean syncEt(boolean (*doneFunc)(void)){
 	while(Serial1.available()){
 		Serial1.read();
 	}
+	//digitalWrite(LED_BUILTIN, HIGH);
 	Serial1.write(ET_SYNC_ID);
-	unsigned char cnt = 0;
-	while(!(*doneFunc)() && cnt<10){
-	
-		if(Serial1.available()){
-			return Serial.read()==ET_SYNCED_ID;
+	while(!(*doneFunc)()){
+		if(Serial1.available()>0){
+			//digitalWrite(LED_BUILTIN, HIGH);
+			//Serial.println(Serial1.read()==ET_SYNCED_ID);
+			return Serial1.read()==ET_SYNCED_ID;
 		}
-		cnt++;
-		delayMicroseconds(10000);
-		delayMicroseconds(10000);
-		delayMicroseconds(10000);
-		delayMicroseconds(10000);
-		delayMicroseconds(10000);
 	}
+	//digitalWrite(LED_BUILTIN, LOW);
+	return false;
 }
 
 #endif //ET_H
