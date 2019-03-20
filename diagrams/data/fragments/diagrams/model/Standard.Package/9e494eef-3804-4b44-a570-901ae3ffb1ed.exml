@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="diagrams" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="activityDiagram" version="4">
   <OBJECT>
-    <ID name="diagrams" mc="Standard.Package" uid="9e494eef-3804-4b44-a570-901ae3ffb1ed"/>
+    <ID name="activityDiagram" mc="Standard.Package" uid="9e494eef-3804-4b44-a570-901ae3ffb1ed"/>
     <PID name="diagrams" mc="Standard.Project" uid="0c028ccf-8adb-4391-a387-8e51ea271d7d"/>
     <ATTRIBUTES>
       <ATT name="IsInstantiable">false</ATT>
@@ -9,7 +9,7 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[diagrams]]></ATT>
+      <ATT name="Name"><![CDATA[activityDiagram]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>

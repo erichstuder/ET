@@ -2,7 +2,7 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Activity" version="4">
   <OBJECT>
     <ID name="Activity" mc="Standard.Activity" uid="c964d161-4932-4ddc-962d-6f02e00c2d9d"/>
-    <PID name="diagrams" mc="Standard.Package" uid="9e494eef-3804-4b44-a570-901ae3ffb1ed"/>
+    <PID name="activityDiagram" mc="Standard.Package" uid="9e494eef-3804-4b44-a570-901ae3ffb1ed"/>
     <ATTRIBUTES>
       <ATT name="IsSingleExecution">false</ATT>
       <ATT name="IsReadOnly">false</ATT>
@@ -12,14 +12,6 @@
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedGroup">
-        <OBJECT>
-          <ID name="Interruptible Region" mc="Standard.InterruptibleActivityRegion" uid="0b4d4161-5795-4d49-a170-0478f47b1183"/>
-          <ATTRIBUTES>
-            <ATT name="Name"><![CDATA[Interruptible Region]]></ATT>
-            <ATT name="status">1970354901745664</ATT>
-          </ATTRIBUTES>
-          <DEPENDENCIES></DEPENDENCIES>
-        </OBJECT>
         <OBJECT>
           <ID name="Interruptible Region1" mc="Standard.InterruptibleActivityRegion" uid="620275f8-d4ef-4147-a7e9-436a67b24c0d"/>
           <ATTRIBUTES>
@@ -32,6 +24,14 @@
           <ID name="Interruptible Region2" mc="Standard.InterruptibleActivityRegion" uid="5c62972e-eb04-46c7-bfd4-c3492f673e53"/>
           <ATTRIBUTES>
             <ATT name="Name"><![CDATA[Interruptible Region2]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Interruptible Region" mc="Standard.InterruptibleActivityRegion" uid="0b4d4161-5795-4d49-a170-0478f47b1183"/>
+          <ATTRIBUTES>
+            <ATT name="Name"><![CDATA[Interruptible Region]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>

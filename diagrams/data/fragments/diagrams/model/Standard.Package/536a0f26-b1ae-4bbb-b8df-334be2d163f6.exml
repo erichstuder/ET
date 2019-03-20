@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="useCaseDiagram" version="4">
+  <OBJECT>
+    <ID name="useCaseDiagram" mc="Standard.Package" uid="536a0f26-b1ae-4bbb-b8df-334be2d163f6"/>
+    <PID name="diagrams" mc="Standard.Project" uid="0c028ccf-8adb-4391-a387-8e51ea271d7d"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[useCaseDiagram]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="read valueLog" mc="Standard.UseCase" uid="cbacbb95-eee9-4005-8daa-908f2599a259"/>
+        <COMPID name="log value" mc="Standard.UseCase" uid="37bc2e8b-023e-49f2-a808-d28fbc220105"/>
+        <COMPID name="plot value stream" mc="Standard.UseCase" uid="1b0bef3f-8455-4717-8b7b-871f4205b1c8"/>
+        <COMPID name="read value" mc="Standard.UseCase" uid="f4c91ecd-b1d5-44b0-9fcc-2f2a1c17a396"/>
+        <COMPID name="set parameter" mc="Standard.UseCase" uid="e97621dc-fd00-4520-ade9-ab354329cd9a"/>
+        <COMPID name="Actor" mc="Standard.Actor" uid="63e2d7f3-92f7-4544-9072-54f8a52cd30c"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="useCaseDiagram" mc="Standard.UseCaseDiagram" uid="8b866445-a568-4479-be7f-9cbf31ae0d0d"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
