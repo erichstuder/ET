@@ -18,8 +18,13 @@
         <COMPID name="log value" mc="Standard.UseCase" uid="37bc2e8b-023e-49f2-a808-d28fbc220105"/>
         <COMPID name="plot value stream" mc="Standard.UseCase" uid="1b0bef3f-8455-4717-8b7b-871f4205b1c8"/>
         <COMPID name="read value" mc="Standard.UseCase" uid="f4c91ecd-b1d5-44b0-9fcc-2f2a1c17a396"/>
-        <COMPID name="set parameter" mc="Standard.UseCase" uid="e97621dc-fd00-4520-ade9-ab354329cd9a"/>
+        <COMPID name="set value" mc="Standard.UseCase" uid="e97621dc-fd00-4520-ade9-ab354329cd9a"/>
         <COMPID name="Actor" mc="Standard.Actor" uid="63e2d7f3-92f7-4544-9072-54f8a52cd30c"/>
+        <COMPID name="start" mc="Standard.UseCase" uid="36ff71a1-aea4-40fc-a4c1-5fe3ecc7e1da"/>
+        <COMPID name="stop" mc="Standard.UseCase" uid="5214aa3b-616c-41b4-85eb-d2462a05421d"/>
+        <COMPID name="reset" mc="Standard.UseCase" uid="0de6849a-48da-4719-aae4-021922a41126"/>
+        <COMPID name="connect" mc="Standard.UseCase" uid="89b0f75c-0659-41f6-904a-db1d328059f9"/>
+        <COMPID name="disconnect" mc="Standard.UseCase" uid="610c744c-ff44-4b31-b3c9-5356a3d64a70"/>
       </COMP>
       <COMP relation="Product">
         <COMPID name="useCaseDiagram" mc="Standard.UseCaseDiagram" uid="8b866445-a568-4479-be7f-9cbf31ae0d0d"/>
