@@ -37,4 +37,9 @@
 # Open Office lock
 *.odt#
 
+# temporary
 source/upBoard/appCopy
+
+# client (PyCharm project is excluded)
+source/client/.idea
+source/client/venv
