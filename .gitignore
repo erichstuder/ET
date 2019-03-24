@@ -43,3 +43,4 @@ source/upBoard/appCopy
 # client (PyCharm project is excluded)
 source/client/.idea
 source/client/venv
+source/client/__pycache__
