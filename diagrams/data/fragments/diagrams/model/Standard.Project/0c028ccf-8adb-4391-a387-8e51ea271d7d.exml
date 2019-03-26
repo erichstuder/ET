@@ -10,8 +10,9 @@
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="Model">
-        <COMPID name="activityDiagram" mc="Standard.Package" uid="9e494eef-3804-4b44-a570-901ae3ffb1ed"/>
+        <COMPID name="activityDiag_externalCalculation" mc="Standard.Package" uid="9e494eef-3804-4b44-a570-901ae3ffb1ed"/>
         <COMPID name="useCaseDiagram" mc="Standard.Package" uid="536a0f26-b1ae-4bbb-b8df-334be2d163f6"/>
+        <COMPID name="activityDiga_debugging" mc="Standard.Package" uid="93fda31b-5bdb-4dbc-b4ef-ee004173a592"/>
       </COMP>
       <COMP relation="DiagramRoot">
         <COMPID name="diagrams" mc="Infrastructure.DiagramSet" uid="469cc270-f774-4b00-be0b-24da94784841"/>
