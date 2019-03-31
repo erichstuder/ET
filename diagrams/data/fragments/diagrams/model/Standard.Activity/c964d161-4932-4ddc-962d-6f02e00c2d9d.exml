@@ -2,7 +2,7 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Activity" version="4">
   <OBJECT>
     <ID name="Activity" mc="Standard.Activity" uid="c964d161-4932-4ddc-962d-6f02e00c2d9d"/>
-    <PID name="activityDiagram" mc="Standard.Package" uid="9e494eef-3804-4b44-a570-901ae3ffb1ed"/>
+    <PID name="activityDiag_externalCalculation" mc="Standard.Package" uid="9e494eef-3804-4b44-a570-901ae3ffb1ed"/>
     <ATTRIBUTES>
       <ATT name="IsSingleExecution">false</ATT>
       <ATT name="IsReadOnly">false</ATT>
@@ -1079,6 +1079,14 @@ start repeating 1s timer]]></ATT>
             </COMP>
           </DEPENDENCIES>
         </OBJECT>
+        <OBJECT>
+          <ID name="Initial Node2" mc="Standard.InitialNode" uid="8381f56b-5e50-4feb-a4be-c7e5b6fa53bc"/>
+          <ATTRIBUTES>
+            <ATT name="Name"><![CDATA[Initial Node2]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
       </COMP>
       <COMP relation="OwnedCollaboration">
         <OBJECT>
@@ -1123,7 +1131,7 @@ start repeating 1s timer]]></ATT>
         </OBJECT>
       </COMP>
       <COMP relation="Product">
-        <COMPID name="activityDiagram" mc="Standard.ActivityDiagram" uid="f17eae00-ed37-4063-b6a6-5f3c25aa4cc0"/>
+        <COMPID name="externalCalculation" mc="Standard.ActivityDiagram" uid="f17eae00-ed37-4063-b6a6-5f3c25aa4cc0"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

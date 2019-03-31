@@ -5,12 +5,32 @@
     <PID name="Activity" mc="Standard.Activity" uid="ef7fdf16-0e54-415e-862f-16924471175a"/>
     <ATTRIBUTES>
       <ATT name="IsVertical">false</ATT>
-      <ATT name="UiDataVersion">19</ATT>
-      <ATT name="UiData"><![CDATA[eJztU01v2zAM/SuC7lE+HGQZ4KZI4yIo6jZFug3oqaAt2lMnS4GkpPG/n1wnXZMihgcU62UnESQf+Ug9hufbQpINGiu0OqN91qPkfBIukidMHRHcuyhx5QrPqDY5KzRHKTTjAnIDBUMunDYMUic2wpUMJRaonH317BPnxXTniWoPJQU8afP42rpHJ+Gd0Ss0riQKCt9RQqnXLgIHPvYD5Bp3VNRaStqdhN094B303pUS6cEgg6ZBbJVvWaoNshrbgt8MbAoc+b7Z5dYtMWvZ5daX2CEJbl2UXHmOL2Zl3NRIErDt0aDdeqSm4Q1KcMg9l6O93VQusqk81YpAcTCcHf0MGY3G/EuWpZ1ekI06w2ECnXE/6He+ZoNxLxgP+kE2aN6+BOuulX5WMSQoj0jcOyNUTicck3WeezPsvoQbJ9ISr9RMFytthfP/caJmi1Kzn0Jyg1WFWNhqj7vnJCIW6pdtn36RRwaePZ0YSjSHGgwaj2l/PLzGWyarCv52Dgr+m8P5O9SnK07wE4qI5iyePlwuHy+ms+v5cvH9NvoYkbS4w7ff9kdAb+Qw/C+Hz5LDt8XdR+vgZOg3t9WSyQ==]]></ATT>
+      <ATT name="UiDataVersion">77</ATT>
+      <ATT name="UiData"><![CDATA[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]]></ATT>
       <ATT name="Name"><![CDATA[debugging]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
+      <LINK relation="Represented">
+        <REFOBJ>
+          <ID name="start client" mc="Standard.OpaqueAction" uid="bf27c15b-ac31-480e-9bff-10e20422c9f5"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="start server" mc="Standard.OpaqueAction" uid="a0c9ae3d-eac6-4dd8-ac35-c4bec69728a8"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="connect to server" mc="Standard.OpaqueAction" uid="0b9ec2ae-a3d8-4b27-8679-62a8000c9cce"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="ControlFlow" mc="Standard.ControlFlow" uid="19508897-5297-451c-a7c0-0c3af04de83b"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="accept connection" mc="Standard.OpaqueAction" uid="4bd69ea8-4048-4b89-afeb-22b3466859d3"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="ControlFlow" mc="Standard.ControlFlow" uid="5b06cd7d-f42a-468b-9da4-e7abf2323a1f"/>
+        </REFOBJ>
+      </LINK>
       <COMP relation="Descriptor">
         <OBJECT>
           <ID name="" mc="Infrastructure.Note" uid="1a042bbe-0dbc-4281-a76f-563470e42378"/>
