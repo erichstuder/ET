@@ -15,6 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <netinet/in.h>
@@ -24,7 +25,9 @@
 
 #define PORT 65432
 
-int networkInit(int *comSocket){
+int comSocket;
+
+int networkInit(void){
 	struct sockaddr_in addr;
 	int socketId;
 	
@@ -40,6 +43,7 @@ int networkInit(int *comSocket){
 	}
 	
 	//configure socket
+	int idReuse=1;
 	if(setsockopt(socketId, SOL_SOCKET, SO_REUSEADDR, &idReuse, sizeof(idReuse)) == -1){
 	   return EXIT_FAILURE;
 	}
@@ -59,16 +63,16 @@ int networkInit(int *comSocket){
 	//accepting
 	struct sockaddr client;//never used
 	socklen_t long_client = sizeof(client);
-	comSocket* = accept(socketId, &client, &long_client);
-	if (comSocket* == -1){
+	comSocket = accept(socketId, &client, &long_client);
+	if (comSocket == -1){
 		return EXIT_FAILURE;
 	}
 	
 	return EXIT_SUCCESS;
 }
 
-int networkSend(int comSocket, const void *buf, size_t len){
-	numCharSent = send(comSocket, buf, len, MSG_NOSIGNAL);
+int networkSend(const void *buf, size_t len){
+	int numCharSent = send(comSocket, buf, len, MSG_NOSIGNAL);
 	if(numCharSent < 0){
 		return EXIT_FAILURE;
 	}

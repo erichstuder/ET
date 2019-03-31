@@ -19,5 +19,5 @@ all:
 	cp ../arduino/app/* appCopy
 	cp ../arduino/et/etConfig.h appCopy
 #	clear
-	gcc upBoard.c upBoardLeds.c appCopy/app.cpp -g -o upBoard.o -lmraa -lm
+	gcc upBoard.c upBoardLeds.c network.c appCopy/app.cpp -g -o upBoard.o -lmraa -lm
 #	sudo ./upBoard.o

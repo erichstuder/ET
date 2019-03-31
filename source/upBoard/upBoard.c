@@ -32,7 +32,7 @@
 
 
 #include "upBoardLeds.h"
-
+#include "network.h"
 #include "appCopy/app.h"
 #include "appCopy/etConfig.h"
 
@@ -67,6 +67,7 @@ const uint8_t OutputId = ET_OUTPUT_ID;
 int main(void){
 	int led_handle = -1;
 	struct timespec startTime, currentTime, sleepTime;
+	struct timespec startTime1, startTime2;
 	bool lowFound;
 	//long startNanoSec, stopNanoSec;
 	//int cnt=0;
@@ -129,8 +130,21 @@ int main(void){
 
 	printf("init done\n");
 	
+	printf("init network...");
+	networkInit();///////////////
+	printf("done\n");
+
 	while(flag){
 		clock_gettime(CLOCK_REALTIME, &startTime);
+		
+		clock_gettime(CLOCK_REALTIME, &startTime1);
+		
+		networkSend("Hello", 6);
+		
+		clock_gettime(CLOCK_REALTIME, &startTime2);
+		printf("start: %ds, %ldns  stop: %ds, %ldns\n", (unsigned int)startTime1.tv_sec, startTime1.tv_nsec, (unsigned int)startTime2.tv_sec, startTime2.tv_nsec);
+		printf("nanodiff: %ldns\n", startTime2.tv_nsec-startTime1.tv_nsec);
+		
 		if(mraa_uart_data_available(uart, 0)){
 			do{
 				mraa_uart_read(uart, &msgId, 1); //dummy reads

@@ -18,7 +18,7 @@
 #ifndef NETWORK_H
 #define NETWORK_H 
 
-int networkInit(int *comSocket);
-int networkSend(int comSocket, const void *buf, size_t len);
+int networkInit(void);
+int networkSend(const void *buf, size_t len);
 
 #endif //NETWORK_H
