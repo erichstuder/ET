@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="activityDiag_externalCalculation" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="activityDiagrams" version="4">
   <OBJECT>
-    <ID name="activityDiag_externalCalculation" mc="Standard.Package" uid="9e494eef-3804-4b44-a570-901ae3ffb1ed"/>
+    <ID name="activityDiagrams" mc="Standard.Package" uid="9e494eef-3804-4b44-a570-901ae3ffb1ed"/>
     <PID name="diagrams" mc="Standard.Project" uid="0c028ccf-8adb-4391-a387-8e51ea271d7d"/>
     <ATTRIBUTES>
       <ATT name="IsInstantiable">false</ATT>
@@ -9,12 +9,14 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[activityDiag_externalCalculation]]></ATT>
+      <ATT name="Name"><![CDATA[activityDiagrams]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedBehavior">
-        <COMPID name="Activity" mc="Standard.Activity" uid="c964d161-4932-4ddc-962d-6f02e00c2d9d"/>
+        <COMPID name="client" mc="Standard.Activity" uid="c964d161-4932-4ddc-962d-6f02e00c2d9d"/>
+        <COMPID name="ET" mc="Standard.Activity" uid="626a9064-0f2d-4da0-b5e4-f0181befd1d2"/>
+        <COMPID name="device" mc="Standard.Activity" uid="50cfc349-7a0c-496b-a37e-eb616b649e49"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>
