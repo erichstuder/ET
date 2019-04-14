@@ -41,6 +41,6 @@
 source/upBoard/appCopy
 
 # client (PyCharm project is excluded)
-source/client/.idea
-source/client/venv
-source/client/__pycache__
+source/etClient/.idea
+source/etClient/venv
+source/etClient/__pycache__

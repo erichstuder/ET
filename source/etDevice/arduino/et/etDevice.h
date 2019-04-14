@@ -15,8 +15,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef ET_H
-#define ET_H
+#ifndef ET_DEVICE_H
+#define ET_DEVICE_H
 
 #include "etConfig.h"
 
@@ -60,4 +60,4 @@ inline boolean syncEt(boolean (*doneFunc)(void)){
 	return false;
 }
 
-#endif //ET_H
+#endif //ET_DEVICE_H

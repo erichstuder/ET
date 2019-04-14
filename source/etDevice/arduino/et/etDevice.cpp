@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "et.h"
+#include "etDevice.h"
 
 void setupEt(){
 	Serial1.begin(2000000);

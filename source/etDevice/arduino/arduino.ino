@@ -17,9 +17,9 @@
 
 #include "app/app.h"
 #include "app/app.cpp"
-#include "et/et.h"
-#include "et/et.cpp" //for any reason this has to be done
-#include "et/app_et.h"
+#include "et/etDevice.h"
+#include "et/etDevice.cpp" //for any reason this has to be done
+#include "et/app_etDevice.h"
 
 boolean timerEvent;
 boolean etActive;
